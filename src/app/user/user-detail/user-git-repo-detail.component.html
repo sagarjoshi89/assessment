@@ -1,0 +1,29 @@
+<div class="table-container">
+  <div class="table-title">
+    <h2>Top 5 Repo</h2>
+  </div>
+  <hr>
+  <table class="custom-table">
+    <tr class="custom-table-row">
+      <th>Repo Name</th>
+      <th>Repo URL</th>
+      <th>Repo Rate</th>
+    </tr>
+      <tr *ngFor="let obj of userGitRepoData">
+        <td>
+          {{obj.name}}
+        </td>
+        <td>
+          {{obj.clone_url}}
+        </td>
+        <td>
+          {{obj.stargazers_count}}
+        </td>
+      </tr>
+    <tr *ngIf="userGitRepoData == undefined || userGitRepoData.length == 0">
+      <td colspan="3">
+        No Record Found
+      </td>
+    </tr>
+  </table>
+</div>

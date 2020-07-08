@@ -1,0 +1,26 @@
+<div class="body-part">
+  <div class="header">
+    <div class="form-loader">
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <input formControlName="username" placeholder="Your name" type="text" class="custom-input">
+        <button type="submit" [disabled]="profileForm.invalid">
+          Search
+        </button>
+      </form>
+    </div>
+  </div>
+  <div>
+    <div class="row-padding">
+      <div class="container con-1">
+        <div class="card">
+          <app-user-profile [userProfileData]=userProfileData></app-user-profile>
+        </div>
+      </div>
+      <div class="container con-2">
+        <div class="card">
+          <app-user-detail [userGitRepoData]=userGitRepoData></app-user-detail>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
