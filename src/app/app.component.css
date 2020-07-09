@@ -1,9 +1,4 @@
-.header{
-    background:#FFF;
-    padding:25px;
-    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);
-    margin-bottom:15px;
-}
+
 .custom-input{
     background: transparent;
     color: currentColor;
@@ -11,12 +6,12 @@
     outline: none;
     padding: 10px;
     margin: 0;
-    width: 100%;
+    width: 75%;
     max-width: 100%;
     vertical-align: bottom;
     text-align: inherit;
     border-bottom:1px solid #757575;
-    max-width: 30%;;
+    max-width: 70%;;
     margin-right:10px;
     font-size:15px;
 }
@@ -25,7 +20,7 @@ input[type="button"] {
     background-color: #555555;
     color:#FFF;
     border-radius: 10px;
-    padding: 10px 25px;
+    padding: 5px 15px;
     border: 1px solid #555;
     cursor:pointer;
 }
@@ -38,25 +33,45 @@ input[type="button"]:disabled {
 .row-padding{
     padding: 0px;
     display: block;
+    background-color: #FFF !important;
 }
 .container{
     box-sizing: border-box;
-    padding-bottom: 8px;;
     display:inline-block;
     vertical-align: top;;
+    padding:0px;
 }
 .con-1{
-    width:20%;
-    padding-right: 8px;
-    padding-bottom:8px;
+    width:30%;
+    background-color: #F5F5F5 !important;
 }
 .con-2{
-    width:60%;
+    width:70%;
+    
 }
-.con-3{
-    width:20%;
+.card-container{
+    padding:10px;
+    border:none;
+    border-radius:0px;
 }
-.card{
-    background-color: #fff!important;
+.search-div{
+    margin-bottom: 15px;
+    padding: 10px;
     box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);
+    background-color: #FFF !important;
 }
+.profile-div{
+    margin-bottom: 15px;
+    padding: 10px;
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);
+    background-color: #FFF !important;
+}
+.recent-search-div{
+    margin-bottom: 15px;
+    height:300px;
+    padding: 10px;
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);
+    overflow:auto;
+    background-color: #FFF !important;
+}
+

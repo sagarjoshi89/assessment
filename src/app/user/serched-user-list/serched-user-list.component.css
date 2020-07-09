@@ -1,9 +1,7 @@
 .table-container{
-    padding:16px;
     color: #757575;
     font-family: "Roboto", sans-serif;
 }
-
 table {
     table-layout: fixed;
     width: 100%;   
@@ -25,4 +23,7 @@ tr:nth-child(odd){
     float:right;
     background-size: cover;
     border-radius: 50%;
+}
+h4{
+    font-size: 20px;
 }
