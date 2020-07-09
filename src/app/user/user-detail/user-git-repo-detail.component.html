@@ -9,17 +9,17 @@
       <th>Repo URL</th>
       <th>Repo Rate</th>
     </tr>
-      <tr *ngFor="let obj of userGitRepoData">
-        <td>
-          {{obj.name}}
-        </td>
-        <td>
-          {{obj.clone_url}}
-        </td>
-        <td>
-          {{obj.stargazers_count}}
-        </td>
-      </tr>
+    <tr *ngFor="let obj of userGitRepoData">
+      <td>
+        {{obj.name}}
+      </td>
+      <td>
+        {{obj.clone_url}}
+      </td>
+      <td>
+        {{obj.stargazers_count}}
+      </td>
+    </tr>
     <tr *ngIf="userGitRepoData == undefined || userGitRepoData.length == 0">
       <td colspan="3">
         No Record Found

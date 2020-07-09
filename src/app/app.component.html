@@ -2,14 +2,9 @@
   <div class="header">
     <div class="form-loader">
       <form [formGroup]="profileForm">
-        <input #InputTypeHead formControlName="username"
-         [typeahead]="searchedUserList"
-         [typeaheadIsFirstItemActive]="false"
-         [isAnimated]="true"
-         placeholder="Search Name"
-         (typeaheadOnSelect)="onSubmit()"
-         (keyup.enter)="onSubmit()"
-         class="custom-input">
+        <input #InputTypeHead formControlName="username" [typeahead]="searchedUserList"
+          [typeaheadIsFirstItemActive]="false" [isAnimated]="true" placeholder="Search Name"
+          (typeaheadOnSelect)="onSubmit()" (keyup.enter)="onSubmit()" class="custom-input">
         <input type="button" (click)="onSubmit()" [disabled]="profileForm.invalid" value="search">
       </form>
     </div>

@@ -6,7 +6,7 @@ export class User {
     userAvatarUrl: string;
     gitRepos?: GitRepo[];
 
-    constructor(userName:string, userLocation:string, userAvatarUrl:string){
+    constructor(userName: string, userLocation: string, userAvatarUrl: string) {
         this.userName = userName;
         this.userLocation = userLocation;
         this.userAvatarUrl = userAvatarUrl;

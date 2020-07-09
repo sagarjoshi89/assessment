@@ -10,16 +10,16 @@ export class UserService {
 
   constructor() { }
 
-  setUserData(userName:string, userObj: User){
-    this.userList.set(userName,userObj);
+  setUserData(userName: string, userObj: User) {
+    this.userList.set(userName, userObj);
   }
 
-  getUserData(userName:string):User{
-    let newObj = <User>this.userList.get(userName);
-    return newObj
+  getUserData(userName: string): User {
+    const newObj = <User>this.userList.get(userName);
+    return newObj;
   }
 
-  isUserExists(userName):boolean{
+  isUserExists(userName): boolean {
     return this.userList.has(userName);
   }
 }

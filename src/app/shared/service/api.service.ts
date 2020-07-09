@@ -8,8 +8,8 @@ export class ApiService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getData(URL:string){
+  getData(URL: string) {
     return this.httpClient.get(URL);
   }
-  
+
 }

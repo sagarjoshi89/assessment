@@ -5,7 +5,7 @@ import { ConstantData } from './shared/constant-data';
 import { map } from 'rxjs/operators';
 import { GitRepo } from './user/user-detail/user-git-repo-detail';
 import { User } from './shared/component/user-profile/user-profile';
-import { NgxSpinnerService } from "ngx-spinner";
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Ngxalert } from 'ngx-dialogs';
 import { UserService } from './shared/service/user.service';
 
@@ -18,7 +18,7 @@ export class AppComponent {
   title = 'contrado-assignment';
   searchedUserName: string;
   profileForm: FormGroup;
-  userProfileData: User =  new User("-","-","assets/img/avatar.png");
+  userProfileData: User = new User('-', '-', 'assets/img/avatar.png');
   userGitRepoData: GitRepo[];
   searchedUserList: string[] = [];
   simpleAlert: any = new Ngxalert;
@@ -41,16 +41,14 @@ export class AppComponent {
   }
 
   retrieveUserData() {
-    let userRetrieveUrl = ConstantData.getUserURL + this.searchedUserName;
-    if(this.userService.isUserExists(this.searchedUserName)){
-      var storedUser = this.userService.getUserData(this.searchedUserName);
-      console.log("Stored User : " , storedUser);
-      this.userProfileData = new User(storedUser.userName,storedUser.userLocation,storedUser.userAvatarUrl);
+    const userRetrieveUrl = ConstantData.getUserURL + this.searchedUserName;
+    if (this.userService.isUserExists(this.searchedUserName)) {
+      const storedUser = this.userService.getUserData(this.searchedUserName);
+      this.userProfileData = new User(storedUser.userName, storedUser.userLocation, storedUser.userAvatarUrl);
       this.userGitRepoData = storedUser.gitRepos;
       this.spinner.hide();
       this.resetForm();
     } else {
-      console.log("User does not exists");
       this.apiService.getData(userRetrieveUrl).subscribe((data: any) => {
         this.retrieveUserRepoData();
         this.setUserProfile(data);
@@ -58,14 +56,14 @@ export class AppComponent {
       }, (exception: any) => {
         this.spinner.hide();
         this.setAlert(exception.statusText);
-      })
+      });
     }
   }
 
   retrieveUserRepoData() {
-    let userRetrieveUrl = ConstantData.getUserRepoURL.replace("{username}", this.searchedUserName);
+    const userRetrieveUrl = ConstantData.getUserRepoURL.replace('{username}', this.searchedUserName);
     this.apiService.getData(userRetrieveUrl).pipe(map((messages: GitRepo[]) => {
-      messages.sort((a1: GitRepo, a2: GitRepo) => a2.stargazers_count - a1.stargazers_count)
+      messages.sort((a1: GitRepo, a2: GitRepo) => a2.stargazers_count - a1.stargazers_count);
       return messages.slice(0, 5);
     })).subscribe((data: any) => {
       this.userGitRepoData = data;
@@ -75,7 +73,7 @@ export class AppComponent {
     }, (exception: any) => {
       this.spinner.hide();
       this.setAlert(exception.statusText);
-    })
+    });
   }
 
   resetForm() {
@@ -83,16 +81,16 @@ export class AppComponent {
   }
 
   setUserProfile(data: any) {
-    this.userProfileData = new User(data.login,data.location,data.avatar_url);
+    this.userProfileData = new User(data.login, data.location, data.avatar_url);
   }
 
-  storeData(){
+  storeData() {
     this.userProfileData.gitRepos = this.userGitRepoData;
-    this.userService.setUserData(this.searchedUserName,this.userProfileData);
+    this.userService.setUserData(this.searchedUserName, this.userProfileData);
   }
-  
-  setUserSearchedList(){
-    if(!this.searchedUserList.some(name => name === this.searchedUserName)){
+
+  setUserSearchedList() {
+    if (!this.searchedUserList.some(name => name === this.searchedUserName)) {
       this.searchedUserList.push(this.searchedUserName);
     }
   }
