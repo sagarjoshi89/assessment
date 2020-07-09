@@ -1,31 +1,27 @@
-<div class="body-part">
-  <div class="header">
-    <div class="form-loader">
-      <form [formGroup]="profileForm">
-        <input #InputTypeHead formControlName="username" [typeahead]="searchedUserList"
-          [typeaheadIsFirstItemActive]="false" [isAnimated]="true" placeholder="Search Name"
-          (typeaheadOnSelect)="onSubmit()" (keyup.enter)="onSubmit()" class="custom-input">
-        <input type="button" (click)="onSubmit()" [disabled]="profileForm.invalid" value="Search">
-      </form>
+<div class="row-padding">
+  <div class="container con-1">
+    <div class="card-container">
+      <div class="search-div">
+        <div class="form-loader">
+          <form [formGroup]="profileForm">
+            <input #InputTypeHead formControlName="username" [typeahead]="searchedUserList"
+              [typeaheadIsFirstItemActive]="false" [isAnimated]="true" placeholder="Search Name"
+              (typeaheadOnSelect)="onSubmit()" (keyup.enter)="onSubmit()" class="custom-input">
+            <input type="button" (click)="onSubmit()" [disabled]="profileForm.invalid" value="Search">
+          </form>
+        </div>
+      </div>
+      <div class="profile-div">
+        <app-user-profile [userProfileData]=userProfileData></app-user-profile>
+      </div>
+      <div class="recent-search-div">
+        <app-serched-user-list (userSelectionEvent)='userSelectedFromRecentSeach($event)'></app-serched-user-list>
+      </div>
     </div>
   </div>
-  <div>
-    <div class="row-padding">
-      <div class="container con-1">
-        <div class="card">
-          <app-user-profile [userProfileData]=userProfileData></app-user-profile>
-        </div>
-      </div>
-      <div class="container con-2">
-        <div class="card">
-          <app-user-detail [userGitRepoData]=userGitRepoData></app-user-detail>
-        </div>
-      </div>
-      <div class="container con-3">
-        <div class="card">
-          <app-serched-user-list (userSelectionEvent)='userSelectedFromRecentSeach($event)'></app-serched-user-list>
-        </div>
-      </div>
+  <div class="container con-2">
+    <div class="card-container">
+      <app-user-detail [userGitRepoData]=userGitRepoData></app-user-detail>
     </div>
   </div>
 </div>

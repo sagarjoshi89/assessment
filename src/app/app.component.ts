@@ -46,7 +46,6 @@ export class AppComponent {
     this.spinner.show();
     const userRetrieveUrl = ConstantData.getUserURL + this.searchedUserName;
     if (this.userService.isUserExists(this.searchedUserName)) {
-      console.log(this.searchedUserName);
       const storedUser = this.userService.getUserData(this.searchedUserName);
       this.userProfileData = new User(storedUser.userName, storedUser.userLocation, storedUser.userHtmlUrl, storedUser.userAvatarUrl);
       this.userGitRepoData = storedUser.gitRepos;

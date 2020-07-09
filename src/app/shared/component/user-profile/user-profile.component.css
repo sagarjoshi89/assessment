@@ -17,13 +17,15 @@ a:hover{
     color:#757575!important;
     cursor: pointer;
 }
+img{
+    width: 30%;;
+}
 .display-container{
     position: relative;
     background: #FFF;
     color:#757575;
     font-family: "Roboto", sans-serif;
     font-size: 15px;;
-    
 }
 .user-detail-container{
     padding: 0.01em 5px;
