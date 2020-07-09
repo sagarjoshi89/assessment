@@ -21,6 +21,11 @@
           <app-user-detail [userGitRepoData]=userGitRepoData></app-user-detail>
         </div>
       </div>
+      <div class="container con-3">
+        <div class="card">
+          <app-serched-user-list (userSelectionEvent)='userSelectedFromRecentSeach($event)'></app-serched-user-list>
+        </div>
+      </div>
     </div>
   </div>
 </div>

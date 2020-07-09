@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ApiService } from './shared/service/api.service';
 import { ConstantData } from './shared/constant-data';
@@ -16,6 +16,7 @@ import { AlertService } from 'ngx-alerts';
 })
 export class AppComponent {
   title = 'contrado-assignment';
+  @Output() userSelectedEvent = new EventEmitter();
   searchedUserName: string;
   profileForm: FormGroup;
   userProfileData: User = new User('-', '-', '-', 'assets/img/avatar.png');
@@ -35,14 +36,17 @@ export class AppComponent {
   }
 
   onSubmit() {
-    this.spinner.show();
     this.searchedUserName = this.profileForm.value.username;
-    this.retrieveUserData();
+    if (this.searchedUserName != null && this.searchedUserName.trim() !== '') {
+      this.retrieveUserData();
+    }
   }
 
   retrieveUserData() {
+    this.spinner.show();
     const userRetrieveUrl = ConstantData.getUserURL + this.searchedUserName;
     if (this.userService.isUserExists(this.searchedUserName)) {
+      console.log(this.searchedUserName);
       const storedUser = this.userService.getUserData(this.searchedUserName);
       this.userProfileData = new User(storedUser.userName, storedUser.userLocation, storedUser.userHtmlUrl, storedUser.userAvatarUrl);
       this.userGitRepoData = storedUser.gitRepos;
@@ -77,7 +81,7 @@ export class AppComponent {
   }
 
   resetForm() {
-    this.profileForm.reset();
+    this.profileForm.patchValue({ username: '' });
   }
 
   setUserProfile(data: any) {
@@ -99,4 +103,8 @@ export class AppComponent {
     this.alertService.info(message);
   }
 
+  userSelectedFromRecentSeach(userObject) {
+    this.userProfileData = userObject;
+    this.userGitRepoData = userObject.gitRepos;
+  }
 }
