@@ -17,13 +17,8 @@ export class UserGitRepoDetailComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    // only run when property "data" changed
-    console.log("User Git : ",changes);
     if (changes['userGitRepoData']) {
-      console.log("User Git 1: ",changes['userGitRepoData'].currentValue);
       this.userGitRepoData = changes['userGitRepoData'].currentValue;
-      console.log("User Git 2: ",this.userGitRepoData);
-        //this.groupPosts = this.groupByCategory(this.data);
     }
 }
 

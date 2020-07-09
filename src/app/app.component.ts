@@ -5,6 +5,8 @@ import { ConstantData } from './shared/constant-data';
 import { map } from 'rxjs/operators';
 import { GitRepo } from './user/user-detail/user-git-repo-detail';
 import { User } from './shared/component/user-profile/user-profile';
+import { NgxSpinnerService } from "ngx-spinner";
+import { Ngxalert } from 'ngx-dialogs';
 
 @Component({
   selector: 'app-root',
@@ -17,8 +19,9 @@ export class AppComponent {
   profileForm: FormGroup;
   userProfileData: any;
   userGitRepoData: any[];
+  simpleAlert: any = new Ngxalert;
 
-  constructor(private fb: FormBuilder, private apiService: ApiService) {
+  constructor(private fb: FormBuilder, private apiService: ApiService, private spinner: NgxSpinnerService) {
 
   }
 
@@ -29,6 +32,7 @@ export class AppComponent {
   }
 
   onSubmit() {
+    this.spinner.show();
     this.searchedUserName = this.profileForm.value.username;
     this.retrieveUserData();
   }
@@ -42,42 +46,23 @@ export class AppComponent {
   retrieveUserData() {
     let userRetrieveUrl = ConstantData.getUserURL + this.searchedUserName;
     this.apiService.getData(userRetrieveUrl).subscribe((data: any) => {
-      if (data && data.message && data.message == "Not Found") {
-        alert("User Not Found");
-      } else {
-        this.retrieveUserRepoData();
-        //this.userProfileData = data;
-        this.setUserProfile(data);
-      }
+      this.retrieveUserRepoData();
+      //this.userProfileData = data;
+      this.setUserProfile(data);
     }, (exception: any) => {
-      console.error(exception);
+      this.spinner.hide();
+      this.setAlert(exception.statusText);
     })
   }
-
-  /*retrieveUserRepoData(){
-    let userRetrieveUrl = ConstantData.getUserRepoURL.replace("{username}",this.searchedUserName);
-    this.apiService.getData(userRetrieveUrl).subscribe((data:any) => {
-      if(data && data.message && data.message == "Not Found"){
-        alert("User Data Not Found");
-      } else {
-        console.log(data);
-      }
-    },(exception:any) => {
-      console.error(exception);
-    })
-  }*/
 
   retrieveUserRepoData() {
     let userRetrieveUrl = ConstantData.getUserRepoURL.replace("{username}", this.searchedUserName);
     this.apiService.getData(userRetrieveUrl).pipe(map((messages: GitRepo[]) => messages.sort((a1: GitRepo, a2: GitRepo) => a2.stargazers_count - a1.stargazers_count))).subscribe((data: any) => {
-      if (data && data.message && data.message == "Not Found") {
-        alert("User Data Not Found");
-      } else {
-        console.log(data);
-        this.userGitRepoData = data.slice(0,5);
-      }
+      this.userGitRepoData = data.slice(0, 5);
+      this.spinner.hide();
     }, (exception: any) => {
-      console.error(exception);
+      this.spinner.hide();
+      this.setAlert(exception.statusText);
     })
   }
 
@@ -90,6 +75,13 @@ export class AppComponent {
     this.userProfileData.userName = data.login;
     this.userProfileData.userAvatarUrl = data.avatar_url;
     this.userProfileData.userLocation = data.location;
+  }
+
+  setAlert(message) {
+    this.simpleAlert.create({
+      title: 'Information',
+      message: message,
+    });
   }
 
 
