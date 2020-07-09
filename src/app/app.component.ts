@@ -19,6 +19,7 @@ export class AppComponent {
   profileForm: FormGroup;
   userProfileData: any;
   userGitRepoData: any[];
+  searchedUserList: string[] = [];
   simpleAlert: any = new Ngxalert;
 
   constructor(private fb: FormBuilder, private apiService: ApiService, private spinner: NgxSpinnerService) {
@@ -31,24 +32,19 @@ export class AppComponent {
     });
   }
 
-  onSubmit() {
+  onSubmit(num) {
+    console.log("On Submit",num);
     this.spinner.show();
     this.searchedUserName = this.profileForm.value.username;
     this.retrieveUserData();
-  }
-
-  keyDownFunction(event) {
-    if (event.keyCode === 13) {
-      this.onSubmit();
-    }
   }
 
   retrieveUserData() {
     let userRetrieveUrl = ConstantData.getUserURL + this.searchedUserName;
     this.apiService.getData(userRetrieveUrl).subscribe((data: any) => {
       this.retrieveUserRepoData();
-      //this.userProfileData = data;
       this.setUserProfile(data);
+      this.setUserSearchedList();
     }, (exception: any) => {
       this.spinner.hide();
       this.setAlert(exception.statusText);
@@ -60,6 +56,7 @@ export class AppComponent {
     this.apiService.getData(userRetrieveUrl).pipe(map((messages: GitRepo[]) => messages.sort((a1: GitRepo, a2: GitRepo) => a2.stargazers_count - a1.stargazers_count))).subscribe((data: any) => {
       this.userGitRepoData = data.slice(0, 5);
       this.spinner.hide();
+      this.resetForm();
     }, (exception: any) => {
       this.spinner.hide();
       this.setAlert(exception.statusText);
@@ -75,6 +72,12 @@ export class AppComponent {
     this.userProfileData.userName = data.login;
     this.userProfileData.userAvatarUrl = data.avatar_url;
     this.userProfileData.userLocation = data.location;
+  }
+  
+  setUserSearchedList(){
+    if(!this.searchedUserList.some(name => name === this.searchedUserName)){
+      this.searchedUserList.push(this.searchedUserName);
+    }
   }
 
   setAlert(message) {

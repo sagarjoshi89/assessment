@@ -5,7 +5,7 @@
     margin-bottom:15px;
 }
 
-input[type=text]{
+.custom-input{
     background: transparent;
     color: currentColor;
     border: none;
@@ -21,7 +21,7 @@ input[type=text]{
     margin-right:10px;
     font-size:15px;
 }
-button {
+input[type="button"] {
     transition-duration: 0.4s;
     background-color: #555555;
     color:#FFF;
@@ -30,14 +30,12 @@ button {
     border: 1px solid #555;
 }
 
-button:focus {
+input[type="button"]:focus {
     outline: none;
 }
-  
-button:hover {
-    background-color: #FFF;
-    color:#555555;
-    border: 1px solid #555;
+
+input[type="button"]:disabled {
+    background: #dddddd;
 }
 
 .row-padding{

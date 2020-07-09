@@ -8,6 +8,8 @@ import { UserGitRepoDetailComponent } from './user/user-detail/user-git-repo-det
 import { ApiService } from './shared/service/api.service';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgxDialogsModule } from 'ngx-dialogs';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { NgxDialogsModule } from 'ngx-dialogs';
     ReactiveFormsModule,
     HttpClientModule,
     NgxSpinnerModule,
-    NgxDialogsModule
+    NgxDialogsModule,
+    TypeaheadModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent],
