@@ -6,8 +6,8 @@ import { map } from 'rxjs/operators';
 import { GitRepo } from './user/user-detail/user-git-repo-detail';
 import { User } from './shared/component/user-profile/user-profile';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Ngxalert } from 'ngx-dialogs';
 import { UserService } from './shared/service/user.service';
+import { AlertService } from 'ngx-alerts';
 
 @Component({
   selector: 'app-root',
@@ -18,13 +18,13 @@ export class AppComponent {
   title = 'contrado-assignment';
   searchedUserName: string;
   profileForm: FormGroup;
-  userProfileData: User = new User('-', '-', 'assets/img/avatar.png');
+  userProfileData: User = new User('-', '-', '-', 'assets/img/avatar.png');
   userGitRepoData: GitRepo[];
   searchedUserList: string[] = [];
-  simpleAlert: any = new Ngxalert;
 
   constructor(private fb: FormBuilder, private apiService: ApiService,
-    private spinner: NgxSpinnerService, private userService: UserService) {
+    private spinner: NgxSpinnerService, private userService: UserService,
+    private alertService: AlertService) {
 
   }
 
@@ -44,7 +44,7 @@ export class AppComponent {
     const userRetrieveUrl = ConstantData.getUserURL + this.searchedUserName;
     if (this.userService.isUserExists(this.searchedUserName)) {
       const storedUser = this.userService.getUserData(this.searchedUserName);
-      this.userProfileData = new User(storedUser.userName, storedUser.userLocation, storedUser.userAvatarUrl);
+      this.userProfileData = new User(storedUser.userName, storedUser.userLocation, storedUser.userHtmlUrl, storedUser.userAvatarUrl);
       this.userGitRepoData = storedUser.gitRepos;
       this.spinner.hide();
       this.resetForm();
@@ -81,7 +81,7 @@ export class AppComponent {
   }
 
   setUserProfile(data: any) {
-    this.userProfileData = new User(data.login, data.location, data.avatar_url);
+    this.userProfileData = new User(data.login, data.location, data.html_url, data.avatar_url);
   }
 
   storeData() {
@@ -96,11 +96,7 @@ export class AppComponent {
   }
 
   setAlert(message) {
-    this.simpleAlert.create({
-      title: 'Information',
-      message: message,
-    });
+    this.alertService.info(message);
   }
-
 
 }

@@ -5,7 +5,7 @@
         <input #InputTypeHead formControlName="username" [typeahead]="searchedUserList"
           [typeaheadIsFirstItemActive]="false" [isAnimated]="true" placeholder="Search Name"
           (typeaheadOnSelect)="onSubmit()" (keyup.enter)="onSubmit()" class="custom-input">
-        <input type="button" (click)="onSubmit()" [disabled]="profileForm.invalid" value="search">
+        <input type="button" (click)="onSubmit()" [disabled]="profileForm.invalid" value="Search">
       </form>
     </div>
   </div>
@@ -25,3 +25,4 @@
   </div>
 </div>
 <ngx-spinner></ngx-spinner>
+<ngx-alerts></ngx-alerts>

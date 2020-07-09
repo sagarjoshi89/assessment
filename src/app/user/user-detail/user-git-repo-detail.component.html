@@ -11,7 +11,7 @@
     </tr>
     <tr *ngFor="let obj of userGitRepoData">
       <td>
-        {{obj.name}}
+        <a href="{{obj.clone_url}}" target="_blank">{{obj.name}}</a>
       </td>
       <td>
         {{obj.clone_url}}

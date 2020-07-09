@@ -1,11 +1,19 @@
 <div class="display-container">
   <img src="{{userAvatarUrl}}" style="width:100%">
   <div class="user-detail-container">
-    <p>
-      {{userName}}
-    </p>
-    <p>
-      {{userLocation}}
-    </p>
+    <div class="info-container">
+      <div class="icon user-icon"></div>
+      <p>
+        <a href="{{userHtmlUrl}}"  target="_blank" *ngIf="userName != '-' else simpleDash">{{userName}}</a>
+        <ng-template #simpleDash>-</ng-template>
+      </p>
+      
+    </div>
+    <div class="info-container" *ngIf="userLocation">
+      <div class="icon location-icon"></div>
+      <p>
+        {{userLocation}}
+      </p>
+    </div>
   </div>
 </div>

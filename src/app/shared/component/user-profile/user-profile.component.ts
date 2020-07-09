@@ -12,6 +12,7 @@ export class UserProfileComponent {
   userAvatarUrl: string;
   userName: string;
   userLocation: string;
+  userHtmlUrl: string;
 
   constructor() { }
 
@@ -20,6 +21,7 @@ export class UserProfileComponent {
       this.userAvatarUrl = this.userProfileData.userAvatarUrl;
       this.userName = this.userProfileData.userName;
       this.userLocation = this.userProfileData.userLocation;
+      this.userHtmlUrl = this.userProfileData.userHtmlUrl;
     }
   }
 }

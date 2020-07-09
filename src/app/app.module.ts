@@ -7,7 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserGitRepoDetailComponent } from './user/user-detail/user-git-repo-detail.component';
 import { ApiService } from './shared/service/api.service';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { NgxDialogsModule } from 'ngx-dialogs';
+import { AlertModule } from 'ngx-alerts';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -22,7 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     HttpClientModule,
     NgxSpinnerModule,
-    NgxDialogsModule,
+    AlertModule.forRoot({maxMessages: 5, timeout: 5000, position: 'right'}),
     TypeaheadModule.forRoot(),
     BrowserAnimationsModule
   ],
