@@ -1,0 +1,28 @@
+.table-container{
+    padding:16px;
+    color: #757575;
+    font-family: "Roboto", sans-serif;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;   
+}
+th,td {
+    word-wrap: break-word;
+    border:none;
+    padding: 10px 10px;
+}
+tr{
+    cursor: pointer;
+}
+tr:nth-child(odd){
+    background-color: #F5F5F5;
+}
+.profile-image{
+    width:30px;
+    height:30px;
+    float:right;
+    background-size: cover;
+    border-radius: 50%;
+}

@@ -1,0 +1,13 @@
+<div class="table-container">
+  <div class="table-title">
+    <h4>Recently Search</h4>
+  </div>
+  <hr>
+  <table class="class-table">
+    <tr class="class-table-row" *ngFor="let userObj of users" (click)="loadUserData(userObj)">
+      <td class="class-table-cell">{{userObj.userName}}
+        <img class="profile-image" src="{{userObj.userAvatarUrl}}">
+      </td>
+    </tr>
+  </table>
+</div>

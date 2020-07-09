@@ -46,12 +46,15 @@ input[type="button"]:disabled {
     vertical-align: top;;
 }
 .con-1{
-    width:25%;
+    width:20%;
     padding-right: 8px;
     padding-bottom:8px;
 }
 .con-2{
-    width:75%;
+    width:60%;
+}
+.con-3{
+    width:20%;
 }
 .card{
     background-color: #fff!important;

@@ -10,12 +10,14 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { AlertModule } from 'ngx-alerts';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SerchedUserListComponent } from './user/serched-user-list/serched-user-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserGitRepoDetailComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    SerchedUserListComponent
   ],
   imports: [
     BrowserModule,
