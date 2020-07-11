@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ApiService } from './shared/service/api.service';
 import { ConstantData } from './shared/constant-data';
@@ -14,7 +14,7 @@ import { AlertService } from 'ngx-alerts';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'contrado-assignment';
   @Output() userSelectedEvent = new EventEmitter();
   searchedUserName: string;
