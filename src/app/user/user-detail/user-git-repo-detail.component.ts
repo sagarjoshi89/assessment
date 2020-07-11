@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { GitRepo } from './user-git-repo-detail';
 
 @Component({
@@ -6,7 +6,7 @@ import { GitRepo } from './user-git-repo-detail';
   templateUrl: './user-git-repo-detail.component.html',
   styleUrls: ['./user-git-repo-detail.component.css']
 })
-export class UserGitRepoDetailComponent {
+export class UserGitRepoDetailComponent implements OnChanges {
 
   @Input() userGitRepoData: GitRepo[];
   constructor() { }
